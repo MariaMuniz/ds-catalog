@@ -1,11 +1,12 @@
 package com.dscatalog.catalog.services;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,10 +26,10 @@ public class CategoryService {
 	private CategoryRepository  repository;
 	
 @Transactional(readOnly=true)
-	public List<CategoryDTO>findAll(){
+	public Page<CategoryDTO>findAllPaged(PageRequest pageRequest){
 
-		List<Category>list= repository.findAll();
-		return list.stream().map(x -> new CategoryDTO(x)).collect(Collectors.toList());
+		Page<Category>list= repository.findAll(pageRequest);
+		return list.map(x -> new CategoryDTO(x));
 		
 	}
 
@@ -77,6 +78,7 @@ public void delete(Long id) {
         	throw new DatabaseException("Falha de integridade referencial");
    	}
 }
+
 
 
 }
