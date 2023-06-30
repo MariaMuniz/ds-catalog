@@ -76,7 +76,8 @@ public class ProductService {
 		}
 		try {
 			repository.deleteById(id);
-		} catch (DataIntegrityViolationException e) {
+		}
+		catch (DataIntegrityViolationException e) {
 			throw new DatabaseException("Falha de integridade referencial");
 		}
 	}

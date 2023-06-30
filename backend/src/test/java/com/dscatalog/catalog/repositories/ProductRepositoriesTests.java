@@ -46,7 +46,7 @@ public class ProductRepositoriesTests {
 	}
 	
 	@Test
-	public void notEmpatylShouldObjectWhenIdExists() {
+	public void optionalNotEmpatylShouldObjectWhenIdExists() {
 	
 		repository.findById(existingId);
 		Optional<Product> result = repository.findById(existingId);
@@ -54,7 +54,7 @@ public class ProductRepositoriesTests {
 	}
 	
 	@Test
-	public void EmpatylShouldObjectWhenIdNotExists() {
+	public void optionalEmpatylShouldObjectWhenIdNotExists() {
 	
 		repository.findById(nonExistingId);
 		Optional<Product> result = repository.findById(nonExistingId);
