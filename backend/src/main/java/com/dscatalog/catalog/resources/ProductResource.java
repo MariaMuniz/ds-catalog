@@ -41,6 +41,8 @@ public ResponseEntity<ProductDTO>findById(@PathVariable Long id){
 		 ProductDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
+	
+	
 	@PostMapping
 	public ResponseEntity< ProductDTO> insert(@RequestBody  ProductDTO dto) {
  dto = service.insert (dto);
